@@ -16,7 +16,7 @@ import java.util.zip.CRC32;
 /**
  * Created by sunguihua on 2019/7/24.
  */
-public class WAL {
+public class SLog {
 
 
     private final static byte ZERO_TYPE = 0;
@@ -33,7 +33,7 @@ public class WAL {
 
     private Path path;
 
-    public WAL(Path path) {
+    public SLog(Path path) {
         this.path = path;
     }
 
@@ -206,7 +206,7 @@ public class WAL {
                             inFragmentRecord = false;
                             baos.reset();
                         }
-                        break;
+                        throw new IOException("中间Fragment错误");
 
                     default:
                         report(baos.size() + tuple._2().remaining(), "未知的Fragment类型");
@@ -293,7 +293,7 @@ public class WAL {
     public static void main(String[] args) {
         String dir = "/Users/sunguihua/temp";
         Path logPath = Paths.get(dir, "wal.log");
-        WAL wal = new WAL(logPath);
+        SLog wal = new SLog(logPath);
 //        try (Writer writer = wal.writer()) {
 //
 //            for(int j=0;j<1000;j++){

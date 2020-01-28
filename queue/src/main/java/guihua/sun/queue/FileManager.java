@@ -11,4 +11,9 @@ public interface FileManager {
 
     KFile get(long fileNumber);
 
+    KFile getManifest();
+
+    void compactManifest();
+
+    void recycle();
 }

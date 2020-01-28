@@ -212,6 +212,7 @@ public class VersionEdit implements ICodec {
 
     public void setLogNumber(long logNumber) {
         this.logNumber = logNumber;
+        this.hasLogNumber = true;
     }
 
     public boolean isHasLogNumber() {
@@ -228,6 +229,7 @@ public class VersionEdit implements ICodec {
 
     public void setNextFileNumber(long nextFileNumber) {
         this.nextFileNumber = nextFileNumber;
+        this.hasNextFileNumber = true;
     }
 
     public boolean isHasNextFileNumber() {

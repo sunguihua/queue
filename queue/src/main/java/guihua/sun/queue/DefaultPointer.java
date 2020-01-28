@@ -138,12 +138,12 @@ public class DefaultPointer implements Pointer, CompactEventListener {
     }
 
     private synchronized void adjustMinCompaction(MinorCompactEvent minorCompactEvent) {
-        this.memTable = minorCompactEvent.getNewMemTable();
-        this.memTableReader = memTable.getReader(last.getKey(), last.getSeqNo());
-
-        SSTableReader ssTableReader = minorCompactEvent.getMewSStable().getReader(last.getKey(), last.getSeqNo());
-        LinkedList<Entry> cache = new LinkedList<>();
-
-        this.readerAndCache.put(ssTableReader, cache);
+//        this.memTable = minorCompactEvent.getNewMemTable();
+//        this.memTableReader = memTable.getReader(last.getKey(), last.getSeqNo());
+//
+//        SSTableReader ssTableReader = minorCompactEvent.getMewSStable().getReader(last.getKey(), last.getSeqNo());
+//        LinkedList<Entry> cache = new LinkedList<>();
+//
+//        this.readerAndCache.put(ssTableReader, cache);
     }
 }

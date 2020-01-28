@@ -5,5 +5,5 @@ package guihua.sun.queue;
  */
 public enum KFileType {
 
-    SSTable, Log, Manifest;
+    SSTable, Log, Manifest, Current;
 }

@@ -151,11 +151,11 @@ public final class Protocol {
         return byteArrayList;
     }
 
-    public static int readFixedInt32(byte[] bytes, int a) {
-        assert a + 4 <= bytes.length;
+    public static int readFixedInt32(byte[] bytes, int startIndex) {
+        assert startIndex + 4 <= bytes.length;
 
-        return bytes[a] << 24 | (bytes[a + 1] & 0xff) << 16 | (bytes[a + 2] & 0xff) << 8
-                | (bytes[a + 3] & 0xff);
+        return bytes[startIndex] << 24 | (bytes[startIndex + 1] & 0xff) << 16 | (bytes[startIndex + 2] & 0xff) << 8
+                | (bytes[startIndex + 3] & 0xff);
     }
 
     public static int readFixedInt32(InputStream is) throws IOException {

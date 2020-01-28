@@ -9,25 +9,15 @@ import static guihua.sun.utils.Protocol.*;
 /**
  * Created by sunguihua on 2019/7/19.
  */
-public class Version<T> {
-
+public class Version<T> implements Cloneable{
 
     VersionSet vset;
-
     Config config;
-    WAL log;
-
-    WAL.Writer logWriter;
-    DefaultMemTable memTable;
-
+    SLog log;
     List<FileMetaData>[] levels;
 
     int refs;
-
     private long seq;
-
-    Version pre;
-    Version next;
 
     public synchronized void put(byte[] userKey, byte[] userValue) throws IOException {
 
@@ -43,10 +33,10 @@ public class Version<T> {
         writeUnsignedVarInt(userValue.length);
         baos.write(userValue);
 
-        logWriter.write(baos.toByteArray());
+        //logWriter.write(baos.toByteArray());
         this.seq ++ ;
 
-        memTable.put(nextSeq, userKey, userValue);
+        //memTable.put(nextSeq, userKey, userValue);
     }
 
     public UserValue get(UserKey userKey) {
@@ -54,4 +44,10 @@ public class Version<T> {
     }
 
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Version version = (Version) super.clone();
+        version.refs = 0;
+        return version;
+    }
 }

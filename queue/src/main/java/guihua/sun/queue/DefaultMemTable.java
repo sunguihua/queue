@@ -8,14 +8,19 @@ import static guihua.sun.utils.Protocol.*;
 /**
  * Created by sunguihua on 2019/7/7.
  */
-public class DefaultMemTable {
+public class DefaultMemTable implements MemTable{
 
 
     private long memoryUsed = 0;
     private SortedMap<StorageKey, byte[]> table;
 
+    private KFile wal;
     private InternalComparator internalComparator;
 
+
+    public DefaultMemTable(KFile wal) {
+        this.wal = wal;
+    }
 
     public void put(long seqNo, byte[] userKey, byte[] userValue) {
 
@@ -46,6 +51,46 @@ public class DefaultMemTable {
 
     long estimateNeededStorageSize() {
         return this.memoryUsed;
+    }
+
+    @Override
+    public long seqNo() {
+        return 0;
+    }
+
+    @Override
+    public void recover(KFile kFile) {
+
+    }
+
+    @Override
+    public boolean immutable() {
+        return false;
+    }
+
+    @Override
+    public void immute() {
+
+    }
+
+    @Override
+    public void put(byte[] userKey, byte[] userValue) {
+
+    }
+
+    @Override
+    public InternalKey smallestKey() {
+        return null;
+    }
+
+    @Override
+    public InternalKey largestKey() {
+        return null;
+    }
+
+    @Override
+    public long estimateNeededStoreSize() {
+        return 0;
     }
 
 
